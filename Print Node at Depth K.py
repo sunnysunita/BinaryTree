@@ -27,6 +27,15 @@ def find_leaf_node(root):
     else:
         return LLN + RLN
 
+def print_at_depth(root, k):
+    if root is None:
+        return
+    if k == 0:
+        print(root.data, end=" ")
+        return
+    print_at_depth(root.left, k - 1)
+    print_at_depth(root.right, k - 1)
+
 
 def buildLevelTree(levelorder):
     index = 0
@@ -56,4 +65,4 @@ def buildLevelTree(levelorder):
 # Main
 levelOrder = [int(i) for i in input().strip().split()]
 root = buildLevelTree(levelOrder)
-print(find_leaf_node(root))
+print_at_depth(root, 0)
