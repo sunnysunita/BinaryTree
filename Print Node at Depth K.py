@@ -36,6 +36,15 @@ def print_at_depth(root, k):
     print_at_depth(root.left, k - 1)
     print_at_depth(root.right, k - 1)
 
+def print_at_depth_new(root, k, d = 0):
+    if root is None:
+        return
+    if d == k:
+        print(root.data, end=" ")
+        return
+    print_at_depth_new(root.left, k, d + 1)
+    print_at_depth_new(root.right, k, d + 1)
+
 
 def buildLevelTree(levelorder):
     index = 0
@@ -65,4 +74,4 @@ def buildLevelTree(levelorder):
 # Main
 levelOrder = [int(i) for i in input().strip().split()]
 root = buildLevelTree(levelOrder)
-print_at_depth(root, 0)
+print_at_depth_new(root, 2)
