@@ -11,6 +11,11 @@ def postOrder(root):
     #############################
     # PLEASE ADD YOUR CODE HERE #
     #############################
+    if root is None:
+        return
+    postOrder(root.left)
+    postOrder(root.right)
+    print(root.data, end=" ")
 
 def buildLevelTree(levelorder):
     index = 0
