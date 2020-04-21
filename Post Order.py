@@ -11,8 +11,6 @@ def postOrder(root):
     #############################
     # PLEASE ADD YOUR CODE HERE #
     #############################
-    --
-
 def buildLevelTree(levelorder):
     index = 0
     length = len(levelorder)
