@@ -45,16 +45,30 @@ def buildLevelTree(levelorder):
             currentNode.right =rightNode
             q.put(rightNode)
     return root
+def height(root):
+    # Find the Height Of Binary Tree
+    #############################
+    # PLEASE ADD YOUR CODE HERE #
+    #############################
+    if root is None:
+        return 0
+    left_tree_height = height(root.left)
+    right_tree_height = height(root.right)
+    return max(left_tree_height, right_tree_height) + 1
 
 def balance_tree(root):
     if root is None:
-        return False
-    if root.left is None and root.right is None:
         return True
-    LT = balance_tree(root.left)
-    RT = balance_tree(root.right)
-    return LT and RT
-
+    height_LT = height(root.left)
+    height_RT = height(root.right)
+    if height_LT - height_RT > 1 or height_RT - height_LT > 1:
+        return False
+    left_BT = balance_tree(root.left)
+    right_BT = balance_tree(root.right)
+    if left_BT and right_BT:
+        return True
+    else:
+        return False
 
 # Problem ID 353, Level order traversal
 def printLevelATNewLine(root):
