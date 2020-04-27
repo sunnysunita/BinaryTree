@@ -28,13 +28,13 @@ def take_level_input():
     q.put(root)
     while q.empty() is False:
         curr = q.get()
-        left_data = int(input("enter the left child of"+str(curr.data)+":"))
+        left_data = int(input("enter the left child of "+str(curr.data)+":"))
         if left_data is not -1:
             left_child = BinaryTree(left_data)
             curr.left = left_child
             q.put(left_child)
 
-        right_data = int(input("enter the right child of"+str(curr.data)+":"))
+        right_data = int(input("enter the right child of "+str(curr.data)+":"))
         if right_data is not -1:
             right_child = BinaryTree(right_data)
             curr.right = right_child
