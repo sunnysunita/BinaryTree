@@ -11,7 +11,16 @@ def insertDuplicateNode(root):
     #############################
     # PLEASE ADD YOUR CODE HERE #
     #############################
-    pass
+    if root is None:
+        return None
+    newNode = BinaryTreeNode(root.data)
+    temp = root.left
+    root.left = newNode
+    lst = insertDuplicateNode(temp)
+    rst = insertDuplicateNode(root.right)
+    newNode.left = lst
+    root.right = rst
+    return root
 
 def buildLevelTree(levelorder):
     index = 0
