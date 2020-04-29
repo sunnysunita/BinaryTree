@@ -5,7 +5,7 @@ class BinaryTreeNode:
         self.left = None
         self.right = None
 
-def elementsInRangeK1K2(root, k1, k2, list):
+"""def elementsInRangeK1K2(root, k1, k2, list):
     if root is None:
         return list
     if root.data > k2:
@@ -17,8 +17,24 @@ def elementsInRangeK1K2(root, k1, k2, list):
         list.append(root.data)
         elementsInRangeK1K2(root.left, k1, k2, list)
         elementsInRangeK1K2(root.right, k1, k2, list)
-    return list
+    return list"""
+def elementsInRangeK1K2(root, k1, k2):
+    if root is None:
+        return []
+    if root.data >= k1 and root.data <= k2:
+        list = []
+        list.append(root.data)
+        lst = elementsInRangeK1K2(root.left, k1, k2)
+        rst = elementsInRangeK1K2(root.right, k1, k2)
+        list.extend(lst)
+        list.extend(rst)
+        return list
 
+    elif root.data > k2:
+        return elementsInRangeK1K2(root.left, k1, k2)
+    else:
+        # root.data < k1:
+        return elementsInRangeK1K2(root.right, k1, k2)
 
 def buildLevelTree(levelorder):
     index = 0
@@ -49,7 +65,7 @@ def buildLevelTree(levelorder):
 levelOrder = [int(i) for i in input().strip().split()]
 root = buildLevelTree(levelOrder)
 k1, k2 = (int(i) for i in input().strip().split())
-list1 = elementsInRangeK1K2(root, k1, k2, list=[])
+list1 = elementsInRangeK1K2(root, k1, k2)
 list1.sort()
 for e in list1:
     print(e, end=" ")
