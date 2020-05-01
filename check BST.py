@@ -6,26 +6,29 @@ class BinaryTreeNode:
         self.right = None
 INT_MIN = -100000
 INT_MAX = 100000
+
+def lst_min(root):
+    if root is None:
+        return INT_MAX
+    lst_min_val = lst_min(root.left)
+    return min(root.data, lst_min_val)
+
+def rst_max(root):
+    if root is None:
+        return INT_MIN
+    rst_max_val = rst_max(root.right)
+    return max(root.data, rst_max_val)
+
+
 def check_BST(root):
     if root is None:
-        return INT_MAX, INT_MIN, True
-
-    min_lst, max_lst, x = check_BST(root.left)
-    min_rst, max_rst, y = check_BST(root.right)
-
-    minimum = min(min_lst, min_rst, root.data)
-    maximum = max(max_lst, max_rst, root.data)
-    temp = True
-    if root.data <= min_lst or root.data > max_rst:
-        temp = False
-    if x is not True or y is not True:
-        temp = False
-
-    return minimum, maximum, temp
-
-
-
-
+        return True
+    lst = lst_min(root.left)
+    rst = rst_max(root.right)
+    if root.data > lst and root.data <= rst:
+        return True
+    else:
+        return False
 
 
 def constructBST(list, floor, ceiling):
@@ -50,7 +53,5 @@ def preOrder(root):
 # Main
 n=int(input())
 lst=[int(i) for i in input().strip().split()]
-root= constructBST(lst, floor=0, ceiling=len(lst)-1)
-# preOrder(root)
-min, max, bool = check_BST(root)
-print(bool)
+root = constructBST(lst, floor=0, ceiling=len(lst)-1)
+print(check_BST(root))
