@@ -1,4 +1,8 @@
-list = [1,2,3,4,5]
-list.extend([5,6])
-list.extend([])
-print(list)
+lst = [1,2,3,4,5,6]
+for e in lst:
+    if isinstance(e, list) is True:
+        for i in e:
+            print(i, end=" ")
+        print()
+    else:
+        print(e, end=" ")
