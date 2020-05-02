@@ -142,7 +142,7 @@ def find_node(root, k):
     elif rst is not None:
         return rst
 
-list = [int(e) for e in input().split(" ")]
+list = [int(e) for e in input().split()]
 target = int(input())
 k = int(input())
 root = buildLevelTree(list)
